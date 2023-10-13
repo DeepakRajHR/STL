@@ -1,36 +1,29 @@
+/*
+ * Learnings
+ * 1. std:sort uses introsort where as std::partial_sort use heap sort
+ * 2. Time complexity of std::sort is n*log(n)
+ * 3. Time complexity of std::sort is n*log(m) where m = middle - first
+ * 4. std::sort is faster then std::partial_sort
+ * 5. std::sort_heap can only sort a vector which represents a heap
+ *
+ */
+
 #include "util.h"
-
 #include <algorithm> // for std::sort
-#include <numeric> // for std::iota
-#include <random>
 
-void shuffle(std::vector<int>& v) {
-  std::random_device rd;
-  std::mt19937 generator(rd());
-
-  std::shuffle(begin(v), end(v), generator);
-}
-
-int main (int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   std::vector<int> v(10);
+  init_vector(v);
 
-  // Populate the vector with random values
-  std::iota(begin(v), end(v), 1);
-  print("Values in vector to begin with", v);
-
-  shuffle(v);
-  print("Values in vector after a shuffle", v);
-
-  // Sort the array
+  print("Values in vector before std::sort", v);
   std::sort(v.begin(), v.end());
-  print("Values in vector after std::sort", v);
+  print("Sorted values", v);
 
   shuffle(v);
-  std::partial_sort(v.begin(), v.begin() + 5, v.end());
-  print("Values in first five element in vector after std::partial_sort", v);
-
-  std::nth_element(begin(v), v.begin() + 9, v.end());
-  print("9th element in vector after std::nth_element", v);
+  std::sort(v.begin(), v.begin() + 6);
+  print("Incorrectly sorted partial values for using std::sort for partailly "
+        "sorting",
+        v);
 
   shuffle(v);
   // Note: we have to make heap first to sort using property of heap

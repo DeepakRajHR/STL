@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-int main (int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   std::vector<int> v{1, 2, 3, 4, 5, 6, 7, 8};
 
   print("Initial list", v);
@@ -29,6 +29,4 @@ int main (int argc, char *argv[]) {
   print("List after heapification using lambda", v);
 
   return 0;
-}   
-
-
+}
